@@ -1,0 +1,21 @@
+<td *ngIf="selectEnabled" class="adv-column no-border width-handle">
+  <input type="checkbox" tabindex="-1"/>
+</td>
+<td *ngIf="serialEnabled" class="adv-column serial width-handle">
+  {{rowIndex + 1}}
+</td>
+<td adv-column *ngFor="let column of columns; let columnIndex=index"
+    class="adv-column"
+    [readOnly]="readOnly"
+    [column] ="column"
+    [row]="row"
+    [rowIndex]="rowIndex"
+    [columnIndex]="columnIndex"
+    id="{{'adv_row_' + rowIndex + '_' + columnIndex}}"
+    [cellClicked]="cellClicked"
+    [ngStyle]="getWidthStyle(column.width)"
+    (click)="cellClick_EventHandler(columnIndex)"
+    (keydown)="keyDown_EventHandler($event, columnIndex)"
+    >
+  
+</td>

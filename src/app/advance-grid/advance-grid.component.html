@@ -1,0 +1,34 @@
+<table [class.advance-grid-table]="true" [ngClass]="cssClass" cellspacing="0" cellpadding="0">
+  <thead class="advance-grid-table-header">
+    <tr *ngIf="headerVisible" class="advance-grid-table-header-row">
+      <th *ngIf="selectAllEnabled && selectEnabled" class="no-border width-handle">
+        <input type="checkbox" />
+      </th>
+      <th *ngIf="serialEnabled" class="serial width-handle"></th>
+      <th *ngFor="let column of columns">{{column.name}}</th>
+    </tr>
+  </thead>
+  <tbody class="advance-grid-table-body">
+    <tr adv-row
+        *ngFor="let row of dataSource;let rowIndex = index"
+        class="advance-grid-table-row"
+        [row]="row"
+        [rowIndex]="rowIndex"
+        [columns]="columns"
+        [serialField]="serialField"
+        [selectField]="selectField"
+        [selectEnabled]="selectEnabled"
+        [serialEnabled]="serialEnabled"
+        [rowHeight]="rowHeight"
+        [colWidth]="colWidth"
+        [readOnly]="readOnly"
+        id="{{'adv_row_' + rowIndex}}"
+        (nextCellRequest)="nextCellRequest_Handler($event)"
+        >
+    </tr>
+  </tbody>
+  <tfoot class="advance-grid-table-footer">
+
+  </tfoot>
+  
+</table>

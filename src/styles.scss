@@ -1,0 +1,388 @@
+/* You can add global styles to this file, and also import other style files */
+body,a,input {
+  font-family: 'Open Sans', sans-serif;
+}
+@mixin borderRadius($bw, $wb2, $wb3, $wb4) {
+  -webkit-border-radius: $bw $wb2 $wb3 $wb4;
+  -moz-border-radius: $bw $wb2 $wb3 $wb4;
+  border-radius: $bw $wb2 $wb3 $wb4;
+}
+
+@mixin transition($property, $sec) {
+  -webkit-transition: $property $sec ease-in-out;
+  -moz-transition: $property $sec ease-in-out;
+  -o-transition: $property $sec ease-in-out;
+  transition: $property $sec ease-in-out;
+}
+
+$hover: #D9F5FC;
+$selectedRow: #78e2ff;
+$tableBorder: #E7ECEE;
+$evenChild: #F9F9F9;
+$disabledCell: #eee;
+$disabledCellTextColor: #999;
+$headerCellBackground: #F2F5FA;
+$headerCellTextColor: #7E96A2;
+$headerBorderBottomColor: rgba(126, 150, 162, 0.3);
+$bodyBorderBottomColor: rgba(158,177,186,0.3);
+$transparentColor: transparent;
+$active-menu-item: #0078d7;
+
+.advance-grid-table {
+  
+  & {
+    width: 100%;
+    border: 1px solid $tableBorder !important;
+    margin: 10px auto;
+    @include borderRadius(2px, 2px, 2px, 2px);
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+
+
+
+
+
+  tfoot {
+    th, td {
+      padding: 0;
+      background-color: #EFF3FB;
+      height: 35px;
+      vertical-align: middle;
+      border-bottom: 0 none !important;
+    }
+
+    .percentageLabeled {
+      line-height: 33px;
+    }
+  }
+
+
+  thead {
+    &.advance-grid-table-header {
+      tr {
+        &.advance-grid-table-header-row {
+        }
+
+        th {
+          background-color: $headerCellBackground;
+          height: 35px;
+          color: $headerCellTextColor;
+          vertical-align: middle;
+          border-bottom: 1px solid $headerBorderBottomColor !important;
+          font-weight: normal;
+          font-size: 18px;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  tbody {
+    &.advance-grid-table-body {
+      tr {
+
+
+        &.selected {
+          td {
+            background-color: $selectedRow !important;
+          }
+        }
+
+        &:hover {
+          & {
+            &.editable-row {
+              background-color: $hover;
+            }
+
+            .invisible {
+              visibility: visible;
+            }
+
+            .hide-element {
+              visibility: visible !important;
+            }
+          }
+        }
+
+        &:last-child {
+          td {
+            border-bottom: 0 none !important;
+          }
+        }
+
+        &:nth-child(even) {
+          background: $transparentColor;
+        }
+
+        &.alternate-row {
+          background-color: $transparentColor;
+        }
+
+        &.editor-display {
+          custom-select-box {
+            input.inputText {
+              border: 0 none;
+              background-color: transparent;
+            }
+
+            .arrow-down {
+              display: none;
+            }
+          }
+        }
+
+        &.row-selected {
+          background-color: darkgoldenrod;
+        }
+
+        &.not-editable-row {
+          & {
+          }
+
+          td {
+            & {
+              background-color: $disabledCell !important;
+              cursor: default !important;
+            }
+
+            textarea {
+              background-color: transparent;
+              border: none;
+              border: none;
+              color: $disabledCellTextColor;
+            }
+
+
+
+            custom-select-box {
+              input.inputText {
+                border: 0 none;
+                background-color: transparent;
+              }
+
+              .arrow-down {
+                display: none;
+              }
+            }
+
+            .currencySelect {
+              color: $disabledCellTextColor;
+            }
+            /*.currencyLabel{
+            color: #999;
+            cursor: default;
+          }*/
+            &.serial {
+              color: $disabledCellTextColor !important;
+            }
+          }
+        }
+
+        td {
+          border-right: 1px solid $bodyBorderBottomColor;
+          border-bottom: 1px solid $bodyBorderBottomColor;
+          vertical-align: top;
+          padding: 0;
+          line-height: 31px;
+          padding: 0;
+          min-height: 41px;
+          font-size: 14px;
+
+
+          &:last-child {
+            border-right: 0 none;
+          }
+
+
+          &.row-handle {
+            & {
+              background-repeat: no-repeat;
+              background-position: center center;
+            }
+
+            &:hover {
+              cursor: grab;
+            }
+          }
+
+          &.serial {
+            text-align: center;
+            width: 30px;
+            line-height: 16px;
+            color: #333;
+            text-shadow: 1px 1px #f5f5f5;
+            padding: 7px 0 0 0;
+            text-indent: 0;
+          }
+
+          &.cell-number {
+            & {
+              text-align: right;
+              padding-top: 0;
+              padding-bottom: 3px;
+              line-height: 35px;
+            }
+
+            input {
+              text-align: right !important;
+            }
+
+            input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+            /* for mozilla */ input[type=number] {
+              -moz-appearance: textfield;
+            }
+          }
+
+          .advance-grid-table-cell-edit {
+            & {
+              padding: 0;
+              line-height: 1; /*33px*/
+            }
+
+            .dx-texteditor-input, input {
+              font-size: 14px;
+              min-width: unset;
+              border: 1px solid;
+              border-color: transparent;
+              padding: 5px 7px; /*line-height:31px; min-height:51px;*/
+              outline: none;
+              background-color: transparent;
+              box-sizing: border-box;
+              width: 100%;
+
+              &:focus {
+                border-color: $active-menu-item;
+              }
+            }
+
+            textarea {
+              & { /*min-height:35px;*/
+                line-height: 20px;
+                padding: 6px 8px;
+                background-color: transparent;
+                font-size: 14px;
+                @include transition((width, height), 0s);
+                box-sizing: border-box;
+                resize: none;
+                height: auto;
+                border: 1px solid;
+                border-color: transparent;
+              }
+
+              &:hover, &:focus {
+                border-color: $active-menu-item;
+              }
+            }
+
+            .dx-textarea {
+              & {
+              }
+
+              .dx-texteditor-input { /*min-height:31px;*/
+                padding: 15px 7px;
+                font-size: 14px;
+                line-height: 20px;
+                @include transition((width, height), 0s);
+              }
+            }
+
+            .currencyPicker.insideGrid {
+              & {
+                line-height: 20px;
+                margin-right: 8px;
+                border: 1px solid;
+                border-color: transparent;
+              }
+
+              input.percentage-box {
+                padding-right: 25px;
+              }
+
+              .dx-texteditor-input, input {
+                font-size: 14px;
+                border: 0 none;
+                line-height: 20px;
+                min-height: 20px;
+                outline: none;
+                background-color: transparent;
+                box-sizing: border-box;
+              }
+
+              .currencyLabel {
+                line-height: 35px;
+                font-size: 18px;
+                margin: 3px 0 0;
+              }
+            }
+          }
+
+          .advance-grid-table-cell-view {
+            padding-left: 8px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+
+
+  tfoot {
+    &.advance-grid-table-footer {
+    }
+  }
+
+  th, td {
+    &.no-border {
+      border-right: 0 none !important;
+    }
+  }
+
+  .font-bold {
+    font-weight: bold;
+  }
+
+  .cell-number {
+    text-align: right;
+    padding-right: 5px;
+  }
+
+  .width-3 {
+    width: 3%;
+  }
+
+  .width-5 {
+    width: 5%;
+  }
+
+  .width-8 {
+    width: 8%;
+  }
+
+  .width-10 {
+    width: 10%;
+  }
+
+  .width-15 {
+    width: 15%;
+  }
+
+  .width-20 {
+    width: 20%;
+  }
+
+  .width-25 {
+    width: 25%;
+  }
+
+  .width-handle {
+    width: 25px;
+  }
+}

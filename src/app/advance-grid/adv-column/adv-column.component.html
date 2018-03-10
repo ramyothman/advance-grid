@@ -1,0 +1,12 @@
+<!--{{columnIndex}}-->
+<div class="advance-grid-table-cell advance-grid-table-cell-view" *ngIf="!editMode">
+  {{row[column.name]}}
+</div>
+<div class="advance-grid-table-cell advance-grid-table-cell-edit" *ngIf="editMode">
+  <input *ngIf="column.fieldType != 'dropdown'" [(ngModel)]="row[column.name]" id="{{'ag_edit_element_cell_' + rowIndex + '_' + columnIndex}}" />
+  <select *ngIf="column.fieldType == 'dropdown'">
+    <option value="INV">Test 1</option>
+    <option value="INV2">Test 2</option>
+    <option value="INV3">Test 3</option>
+  </select>
+</div>
